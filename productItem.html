@@ -1,0 +1,67 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<style>
+    #productItem {
+        width : 400px;
+        margin: auto;
+        background-color: #c3e0e5;
+        border-radius : 10px;
+        margin-top: 10px;
+        #productImg {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #c3e0e5;
+        }
+    }
+    
+    #prodDesc {
+        margin: auto;
+        font-size: 15px;
+        tr{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+            padding: 5px;
+            text-align: center;
+            font-weight: 10px;
+        }
+    }
+
+</style>
+<script>
+    $(function() {
+        var selectedProdId = $.cookie("selectedProduct")
+        var selectedItem = getProductById(Number(selectedProdId));
+        $("#img").attr("src", selectedItem.img);
+        $("#name").html(selectedItem.name);
+        $("#desc").html(selectedItem.desc);
+        $("#type").html(selectedItem.type);
+    })
+</script>
+<body>
+    <div id = 'productItem'>
+        <div id = 'productImg'>
+            <img id = 'img' src="/images/images.jpg" alt="image" width="380px" height="400px">
+        </div>
+        <div>
+            <table id = 'prodDesc'>
+                <tr>
+                    <td><b>Name of product : </b></td>
+                    <td><b id = 'name'></b></td>
+                    <td><b> Description : </b></td>
+                    <td><b  id = 'desc'></b></td>
+                    <td><b> type : </b></td>
+                    <td><b id = 'type'></b></td>
+                    <td><b> Headset alvailable : </b></td>
+                    <td><b> yes </b></td>
+                    <td><b> processor : </b></td>
+                    <td><b> MediaTech </b></td>
+                    <td><b> RAM : </b></td>
+                    <td><b> 64 </b></td>
+                    <td><b> ROM : </b></td>
+                    <td><b> 8 </b></td>
+                </tr>
+            </table>            
+        </div> 
+    </div>
+</body>

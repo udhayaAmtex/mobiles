@@ -99,7 +99,7 @@ integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="ano
 <script>
     $(function () {
         setInterval(changeImage, 2000);
-        let index = 0;
+        var index = 0;
         function changeImage() {
             if (index === 0) {
                 $("#offerImage").attr("src", "https://img-prd-pim.poorvika.com/cdn-cgi/image/width=1900,height=600,quality=75/pageimg/Redmi-Note-13-Pro-Plus-5G-Desktop-View.jpg");
@@ -111,9 +111,9 @@ integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="ano
         }
       })
 
-    const limit = 3;
-    let offset4G = 0;
-    let offset5G = 0;
+    var limit = 3;
+    var offset4G = 0;
+    var offset5G = 0;
 
     $(filterProducts('5G'));
     $(filterProducts('4G'));
@@ -149,7 +149,7 @@ integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="ano
     });
 
     function nextPage(type) {
-        let len = productList.filter(p => p.type == type).length;
+        var len = productList.filter(p => p.type == type).length;
         if (type == '5G') {
             if ((offset5G + 3) < len ) {
                 $('.product-card' + type).remove();
