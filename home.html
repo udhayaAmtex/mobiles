@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-1.12.3.min.js"
-integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <style>
@@ -98,6 +96,7 @@ integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="ano
 <script src="./product.js"></script>
 <script>
     $(function () {
+        //chages the image frequently
         setInterval(changeImage, 2000);
         var index = 0;
         function changeImage() {
@@ -109,14 +108,27 @@ integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="ano
                 index = 0;
             }
         }
-      })
+
+        // Added 5G products
+        filterProducts('5G')
+
+        //Added 4G products
+        filterProducts('4G')
+
+        $(".view-details-btn").click(function (e) { 
+          let selectedDtn = this.className.trim().split(" ")[1];
+          let selectedProdectId = selectedDtn.substring(selectedDtn.length-1);
+          console.log("selected : "+ selectedProdectId);
+          $.cookie("selectedProduct", selectedProdectId);
+          console.log(  "Selected : " + $.cookie("selectedProduct"));
+          $("#body").load("productItem.html");
+        });
+
+      });
 
     var limit = 3;
     var offset4G = 0;
     var offset5G = 0;
-
-    $(filterProducts('5G'));
-    $(filterProducts('4G'));
 
     function filterProducts(type) {
         if (type == '5G') {
@@ -126,8 +138,6 @@ integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="ano
         }
     }
 
-    
-    
     $("#less5G").click(function (e) { 
         e.preventDefault();
         prev('5G');
@@ -191,7 +201,7 @@ integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="ano
                 <img class="product-image" src=${value.img} alt="Product 2">
                 <div class="product-name">${value.name}</div>
                 <div class="product-description">${value.desc}</div>
-                <button class="view-details-btn">View Details</button>
+                <button class="view-details-btn btn${value.id}">View Details</button>
             </div>
             `
         );
